@@ -11,9 +11,24 @@ e.g.
 
 - Deno
 - ffprobe
+- make
 
 ## Usage
 
 ```bash
 m4b-janny *.m4b
+```
+
+## Setup
+
+Global install (recommend)
+
+```bash
+make install
+```
+
+Executable (created in `./bin`)
+
+```bash
+make
 ```

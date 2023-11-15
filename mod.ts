@@ -11,7 +11,7 @@ for (const file of m4bFiles) {
   await createAuthorDir(file);
 }
 
-async function createAuthorDir(filePath) {
+async function createAuthorDir(filePath = "") {
   const rawMeta = await new Deno.Command("ffprobe", {
     args: [
       "-v",
