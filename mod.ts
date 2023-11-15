@@ -7,8 +7,6 @@ if (m4bFiles.length === 0) {
   Deno.exit(1);
 }
 
-console.log("m4bFiles ", m4bFiles);
-
 for (const file of m4bFiles) {
   await createAuthorDir(file);
 }
