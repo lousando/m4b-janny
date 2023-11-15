@@ -31,13 +31,14 @@ async function createAuthorDir(filePath) {
     new TextDecoder().decode(rawMeta.stdout),
   );
 
-  const author = jsonMeta.format.tags.artist.replaceAll(".", " ");
+  // remove dots from directory names
+  const author = jsonMeta.format.tags.artist.replaceAll(".", "");
 
   try {
     const { isFile, isDirectory } = await Deno.stat(author);
 
     if (!isFile && !isDirectory) {
-      console(`${author} file or folder already exists!`);
+      console.warn(`${author} file or folder already exists!`);
     }
   } catch {
     await Deno.mkdir(author);
