@@ -31,7 +31,7 @@ async function createAuthorDir(filePath) {
     new TextDecoder().decode(rawMeta.stdout),
   );
 
-  const author = jsonMeta.format.tags.artist.replace(".", " ");
+  const author = jsonMeta.format.tags.artist.replaceAll(".", " ");
 
   try {
     const { isFile, isDirectory } = await Deno.stat(author);
