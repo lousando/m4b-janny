@@ -29,9 +29,11 @@ async function createAuthorDir(filePath = "") {
     new TextDecoder().decode(rawMeta.stdout),
   );
 
+  const cleanFilter = /(\.|:)/i;
+
   // remove dots from directory names
-  const author = jsonMeta.format.tags.artist.replaceAll(".", "");
-  const title = jsonMeta.format.tags.title.replaceAll(".", "");
+  const author = jsonMeta.format.tags.artist.replace(cleanFilter, "");
+  const title = jsonMeta.format.tags.title.replace(cleanFilter, "");
 
   const dirPath = `${author}/${title}`;
 
