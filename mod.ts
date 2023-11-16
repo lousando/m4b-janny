@@ -31,17 +31,20 @@ async function createAuthorDir(filePath = "") {
 
   // remove dots from directory names
   const author = jsonMeta.format.tags.artist.replaceAll(".", "");
+  const title = jsonMeta.format.tags.title.replaceAll(".", "");
+
+  const dirPath = `${author}/${title}`;
 
   try {
-    const { isFile, isDirectory } = await Deno.stat(author);
+    const { isFile, isDirectory } = await Deno.stat(dirPath);
 
     if (!isFile && !isDirectory) {
       console.warn(`${author} file or folder already exists!`);
     }
   } catch {
-    await Deno.mkdir(author);
-    console.log(`Created: ${author}`);
+    await Deno.mkdir(dirPath, { recursive: true });
+    console.log(`Created: ${dirPath}`);
   }
 
-  await Deno.rename(filePath, `${author}/${filePath}`);
+  await Deno.rename(filePath, `${dirPath}/${filePath}`);
 }
